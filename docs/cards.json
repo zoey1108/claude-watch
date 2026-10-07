@@ -1,4 +1,59 @@
 {
- "updated": null,
- "cards": []
+ "updated": "2026-10-07T07:22:57.652Z",
+ "cards": [
+  {
+   "id": "news-cyber-verification-program",
+   "type": "news",
+   "title": "Expanding the Cyber Verification Program",
+   "body": "We’re launching a new, expanded version of our Cyber Verification Program (CVP), which mak",
+   "tag": "Anthropic",
+   "url": "https://www.anthropic.com/news/cyber-verification-program",
+   "date": "2026-10-07"
+  },
+  {
+   "id": "news-claude-frontier-academy",
+   "type": "news",
+   "title": "Claude Frontier Academy: $100M to train ",
+   "body": "Claude Frontier Academy trains Frontier Deployed Engineers to the standard of Anthropic’s ",
+   "tag": "Anthropic",
+   "url": "https://www.anthropic.com/news/claude-frontier-academy",
+   "date": "2026-10-07"
+  },
+  {
+   "id": "news-barclays-scales-claude",
+   "type": "news",
+   "title": "Barclays scales Claude to upgrade operat",
+   "body": "Barclays, the British universal bank, is expanding its strategic collaboration with Anthro",
+   "tag": "Anthropic",
+   "url": "https://www.anthropic.com/news/barclays-scales-claude",
+   "date": "2026-10-07"
+  },
+  {
+   "id": "cc-2.1.292",
+   "type": "news",
+   "title": "Claude Code 2.1.292",
+   "body": "2.1.292\n\n- Added `--marketplace <source>` to `claude plugin install`: adds the marketplace",
+   "tag": "Anthropic",
+   "url": "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md",
+   "date": "2026-10-07"
+  },
+  {
+   "id": "cc-2.1.291",
+   "type": "news",
+   "title": "Claude Code 2.1.291",
+   "body": "2.1.291\n\n- Fixed a regression in 2.1.290 where cloud sessions could drop answers to permis",
+   "tag": "Anthropic",
+   "url": "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md",
+   "date": "2026-10-07"
+  },
+  {
+   "id": "cc-2.1.290",
+   "type": "news",
+   "title": "Claude Code 2.1.290",
+   "body": "2.1.290\n\n- Added `serverToolUses` to the result of a mod's `turn.step` hook: the tool call",
+   "tag": "Anthropic",
+   "url": "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md",
+   "date": "2026-10-07"
+  }
+ ]
 }
