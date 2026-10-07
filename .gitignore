@@ -1,0 +1,5 @@
+node_modules/
+watch/build/
+*.xcuserstate
+xcuserdata/
+.DS_Store

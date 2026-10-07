@@ -1,0 +1,52 @@
+name: ClaudeTap
+options:
+  bundleIdPrefix: com.zoey1108
+  deploymentTarget:
+    watchOS: "10.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    DEVELOPMENT_TEAM: G692HH5654
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    GENERATE_INFOPLIST_FILE: YES
+    INFOPLIST_KEY_CFBundleDisplayName: Claude一点通
+targets:
+  ClaudeTap:
+    type: application
+    platform: watchOS
+    sources:
+      - App
+      - Shared
+    info:
+      path: App/Info.plist
+      properties:
+        WKApplication: true
+        WKWatchOnly: true
+        CFBundleURLTypes:
+          - CFBundleURLName: com.zoey1108.claudetap
+            CFBundleURLSchemes: [claudetap]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zoey1108.claudetap
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    dependencies:
+      - target: ClaudeTapWidget
+  ClaudeTapWidget:
+    type: app-extension
+    platform: watchOS
+    sources:
+      - Widget
+      - Shared
+    info:
+      path: Widget/Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zoey1108.claudetap.widget
+        SKIP_INSTALL: YES

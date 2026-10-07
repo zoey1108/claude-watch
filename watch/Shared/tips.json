@@ -1,0 +1,632 @@
+[
+ {
+  "id": "t001",
+  "type": "tip",
+  "title": "先给背景",
+  "body": "说清楚是什么事、给谁看、为什么做。背景越具体，回答越贴合。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t002",
+  "type": "tip",
+  "title": "任务要具体",
+  "body": "别说「帮我改改」，说「把这段改成 200 字以内、适合朋友圈的语气」。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t003",
+  "type": "tip",
+  "title": "指定输出格式",
+  "body": "要表格、清单还是段落，直接说出来，Claude 会照做。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t004",
+  "type": "tip",
+  "title": "给 1–3 个例子",
+  "body": "想要某种风格，就贴几个范例。例子要彼此不同，避免它只会照抄一种。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t005",
+  "type": "tip",
+  "title": "解释原因",
+  "body": "告诉它为什么有这条要求，比如「读者是小学生」，它会举一反三。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t006",
+  "type": "tip",
+  "title": "说要什么",
+  "body": "与其说「不要用术语」，不如说「用日常口语解释」。正面要求更好执行。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t007",
+  "type": "tip",
+  "title": "用标签分材料",
+  "body": "多份资料用 <合同>…</合同> 这样的标签隔开，Claude 不会混在一起。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t008",
+  "type": "tip",
+  "title": "长文放前面",
+  "body": "资料很长时，先贴资料，把问题放在最后，回答质量更高。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t009",
+  "type": "tip",
+  "title": "先引用再回答",
+  "body": "让它先摘出原文里的相关句子，再作答，能明显减少编造。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t010",
+  "type": "tip",
+  "title": "允许说不知道",
+  "body": "加一句「不确定就直接说不知道」，能减少硬编的答案。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t011",
+  "type": "tip",
+  "title": "让它先提问",
+  "body": "信息不够时说「先问我几个问题再动手」，省去来回返工。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t012",
+  "type": "tip",
+  "title": "拆成小步骤",
+  "body": "大任务拆成几轮：先列大纲，再写初稿，再润色，每步都能把关。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t013",
+  "type": "tip",
+  "title": "让它自查",
+  "body": "写完后追加「检查一遍有没有事实错误或遗漏」，常能揪出问题。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t014",
+  "type": "tip",
+  "title": "给角色",
+  "body": "在开头设定身份，比如「你是资深 HR」，语气和视角会更专业。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t015",
+  "type": "tip",
+  "title": "控制长度",
+  "body": "用具体数字限制：「3 条，每条不超过 20 字」比「简短点」有效。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t016",
+  "type": "tip",
+  "title": "具体指出问题",
+  "body": "不满意时别只说「再改改」，指出哪句、哪里不好、想要什么。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t017",
+  "type": "tip",
+  "title": "复杂题先思考",
+  "body": "难题加一句「先一步步分析，再给结论」，推理会更扎实。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t018",
+  "type": "tip",
+  "title": "给评判标准",
+  "body": "告诉它好答案的标准，比如「要有数据支撑、可执行」。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t019",
+  "type": "tip",
+  "title": "提示词模板化",
+  "body": "常用的提示词存成模板，换掉变量就能复用，效率翻倍。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t020",
+  "type": "tip",
+  "title": "让 Claude 写提示词",
+  "body": "不会写提示词？描述你的目标，让 Claude 帮你写一版再改。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t021",
+  "type": "tip",
+  "title": "格式随提示走",
+  "body": "想要少用 Markdown，提示词本身也别写成满屏列表和加粗。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t022",
+  "type": "tip",
+  "title": "要 JSON 给结构",
+  "body": "需要 JSON 时把字段名和类型写清楚，最好附一个示例。",
+  "tag": "提示词"
+ },
+ {
+  "id": "t023",
+  "type": "tip",
+  "title": "/init 一键入门",
+  "body": "在项目里运行 /init，Claude 会扫描代码并生成 CLAUDE.md。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t024",
+  "type": "tip",
+  "title": "写好 CLAUDE.md",
+  "body": "写上构建命令、代码风格、不能动的目录。每次启动都会自动读。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t025",
+  "type": "tip",
+  "title": "CLAUDE.md 可引用",
+  "body": "在 CLAUDE.md 里写 @docs/规范.md，可以把其他文件一起引入。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t026",
+  "type": "tip",
+  "title": "/clear 换任务",
+  "body": "开始一件新事情前 /clear，旧对话不会干扰新任务。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t027",
+  "type": "tip",
+  "title": "/compact 加说明",
+  "body": "/compact 后面可以写要点，比如「只保留接口设计」，摘要更精准。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t028",
+  "type": "tip",
+  "title": "/context 看余量",
+  "body": "上下文快满时回答会变差，用 /context 看看还剩多少。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t029",
+  "type": "tip",
+  "title": "Esc 随时打断",
+  "body": "发现方向不对立刻按 Esc，补充说明后它会接着做。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t030",
+  "type": "tip",
+  "title": "Esc 两下回退",
+  "body": "连按两次 Esc 可以回到之前的消息，换个说法重来。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t031",
+  "type": "tip",
+  "title": "/rewind 撤销改动",
+  "body": "改坏了？/rewind 能把对话和代码一起退回到之前的节点。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t032",
+  "type": "tip",
+  "title": "计划模式",
+  "body": "Shift+Tab 切到计划模式，Claude 只出方案不改代码，你确认后再动手。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t033",
+  "type": "tip",
+  "title": "@ 引用文件",
+  "body": "输入 @ 再敲文件名，直接把文件塞进上下文，不用复制粘贴。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t034",
+  "type": "tip",
+  "title": "! 执行命令",
+  "body": "以 ! 开头直接跑终端命令，输出也会进对话，Claude 能看到。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t035",
+  "type": "tip",
+  "title": "粘贴截图",
+  "body": "Ctrl+V 粘贴截图，UI 问题、报错弹窗直接给它看。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t036",
+  "type": "tip",
+  "title": "claude -c 续上",
+  "body": "claude -c 继续最近一次对话，昨天的活今天接着干。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t037",
+  "type": "tip",
+  "title": "claude -r 挑对话",
+  "body": "claude -r 列出历史对话，选一个恢复。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t038",
+  "type": "tip",
+  "title": "claude -p 进脚本",
+  "body": "claude -p \"问题\" 只输出结果就退出，适合放进脚本和管道。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t039",
+  "type": "tip",
+  "title": "预先授权命令",
+  "body": "用 /permissions 允许常用命令（如 npm test），少弹很多确认。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t040",
+  "type": "tip",
+  "title": "团队共享设置",
+  "body": ".claude/settings.json 可以提交到仓库，全队共用权限和配置。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t041",
+  "type": "tip",
+  "title": "别乱跳过权限",
+  "body": "--dangerously-skip-permissions 只在隔离的沙箱里用，别在本机随手开。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t042",
+  "type": "tip",
+  "title": "让它能自己验证",
+  "body": "给它跑测试、看截图的办法，它能自己发现并修好问题。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t043",
+  "type": "tip",
+  "title": "先写测试",
+  "body": "让 Claude 先写失败的测试，再写实现，改动更可靠。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t044",
+  "type": "tip",
+  "title": "子代理",
+  "body": "/agents 创建专职子代理，比如代码审查员，主对话保持干净。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t045",
+  "type": "tip",
+  "title": "Skills 技能包",
+  "body": "把常用流程写进 SKILL.md，Claude 需要时会自动加载。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t046",
+  "type": "tip",
+  "title": "自定义命令",
+  "body": "在 .claude/commands/ 放一个 md 文件，就多了一个斜杠命令。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t047",
+  "type": "tip",
+  "title": "Hooks 自动化",
+  "body": "用 /hooks 设置自动动作，比如每次改完文件自动格式化。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t048",
+  "type": "tip",
+  "title": "接入 MCP",
+  "body": "claude mcp add 接上数据库、设计稿等外部工具，Claude 能直接用。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t049",
+  "type": "tip",
+  "title": "让它写提交",
+  "body": "说「帮我提交，写清楚改了什么」，它会看 diff 写 commit 信息。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t050",
+  "type": "tip",
+  "title": "用 gh 开 PR",
+  "body": "装好 gh 命令行后，Claude 可以直接帮你开 PR、看 Issue。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t051",
+  "type": "tip",
+  "title": "并行多个 Claude",
+  "body": "用 git worktree 开多个工作目录，多个 Claude 同时做不同任务。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t052",
+  "type": "tip",
+  "title": "贴完整报错",
+  "body": "报错别只截一半，完整堆栈贴进去，定位快得多。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t053",
+  "type": "tip",
+  "title": "/model 切模型",
+  "body": "简单活用快的模型，难题换更强的模型，/model 随时切。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t054",
+  "type": "tip",
+  "title": "/memory 改记忆",
+  "body": "/memory 直接打开 CLAUDE.md 编辑，补充新约定。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t055",
+  "type": "tip",
+  "title": "/doctor 体检",
+  "body": "装不上或行为异常时先跑 /doctor，看看哪里出了问题。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t056",
+  "type": "tip",
+  "title": "Shift+Enter 换行",
+  "body": "输入多行内容时用 Shift+Enter 换行，不会提前发送。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t057",
+  "type": "tip",
+  "title": "↑ 翻历史",
+  "body": "按 ↑ 找回之前输入过的内容，改一改再发。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t058",
+  "type": "tip",
+  "title": "先探索再动手",
+  "body": "让它先读相关代码、讲清现状，再提方案，比直接改靠谱。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t059",
+  "type": "tip",
+  "title": "小步提交",
+  "body": "每完成一小块就让它提交一次，出问题方便回退。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t060",
+  "type": "tip",
+  "title": "claude update",
+  "body": "运行 claude update 升级到最新版，新功能第一时间用上。",
+  "tag": "Claude Code"
+ },
+ {
+  "id": "t061",
+  "type": "tip",
+  "title": "项目 Projects",
+  "body": "把资料和要求放进项目，里面所有对话都能共用，不用反复上传。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t062",
+  "type": "tip",
+  "title": "编辑旧消息",
+  "body": "点自己发过的消息可以修改，从那里重新生成，不用新开对话。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t063",
+  "type": "tip",
+  "title": "重新生成",
+  "body": "不满意就重新生成，同一个问题换个角度回答。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t064",
+  "type": "tip",
+  "title": "风格设置",
+  "body": "选「简洁」「解释型」等风格，或者上传范文自定义风格。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t065",
+  "type": "tip",
+  "title": "扩展思考",
+  "body": "难题打开扩展思考，Claude 会先推理再作答。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t066",
+  "type": "tip",
+  "title": "联网搜索",
+  "body": "需要最新信息时开启搜索，回答会附上来源链接。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t067",
+  "type": "tip",
+  "title": "研究模式",
+  "body": "研究模式会多轮检索，最后给出带引用的调研报告。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t068",
+  "type": "tip",
+  "title": "Artifacts",
+  "body": "让 Claude 做网页、小工具、文档，结果在侧边栏单独展示，可以直接用。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t069",
+  "type": "tip",
+  "title": "拖拽上传",
+  "body": "PDF、表格、图片直接拖进输入框，Claude 能读能分析。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t070",
+  "type": "tip",
+  "title": "连接器",
+  "body": "在设置里连上 Google Drive、日历、邮箱等，Claude 能直接查。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t071",
+  "type": "tip",
+  "title": "记忆功能",
+  "body": "开启记忆后，Claude 能记住你的偏好和之前聊过的事，可随时管理。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t072",
+  "type": "tip",
+  "title": "语音对话",
+  "body": "手机 App 支持语音模式，走路时也能和 Claude 聊。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t073",
+  "type": "tip",
+  "title": "分享对话",
+  "body": "好用的对话可以生成分享链接，发给同事一起看。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t074",
+  "type": "tip",
+  "title": "桌面 App",
+  "body": "装上 Claude 桌面版，快捷键随时唤起，不用切浏览器。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t075",
+  "type": "tip",
+  "title": "Claude in Chrome",
+  "body": "浏览器扩展能让 Claude 帮你操作网页，比如填表、整理信息。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t076",
+  "type": "tip",
+  "title": "长对话换新",
+  "body": "一个对话聊太久会变慢变乱，换话题就开新对话。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t077",
+  "type": "tip",
+  "title": "让它出图表",
+  "body": "数据贴进去，说「做成图表」，Claude 会生成可视化。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t078",
+  "type": "tip",
+  "title": "截图提问",
+  "body": "看不懂的界面、报错、题目，截图发给 Claude 问。",
+  "tag": "Claude App"
+ },
+ {
+  "id": "t079",
+  "type": "tip",
+  "title": "提示缓存",
+  "body": "把不变的长系统提示放前面并开启缓存，重复调用能省大量费用。",
+  "tag": "API"
+ },
+ {
+  "id": "t080",
+  "type": "tip",
+  "title": "批量接口半价",
+  "body": "不着急要结果的任务用 Batch API，费用直接打五折。",
+  "tag": "API"
+ },
+ {
+  "id": "t081",
+  "type": "tip",
+  "title": "结构化输出",
+  "body": "用 output_config.format 指定 JSON Schema，返回结果保证能解析。",
+  "tag": "API"
+ },
+ {
+  "id": "t082",
+  "type": "tip",
+  "title": "按任务选模型",
+  "body": "大批量简单任务用 Haiku，复杂推理用 Opus，成本差好几倍。",
+  "tag": "API"
+ },
+ {
+  "id": "t083",
+  "type": "tip",
+  "title": "effort 控深度",
+  "body": "用 effort 参数调思考深度：简单任务 low，硬骨头 high。",
+  "tag": "API"
+ },
+ {
+  "id": "t084",
+  "type": "tip",
+  "title": "长输出用流式",
+  "body": "输出很长时用 streaming，既不会超时，用户也能边看边等。",
+  "tag": "API"
+ },
+ {
+  "id": "t085",
+  "type": "tip",
+  "title": "先数 token",
+  "body": "用 count_tokens 接口提前算 token，预估费用心里有数。",
+  "tag": "API"
+ },
+ {
+  "id": "t086",
+  "type": "tip",
+  "title": "系统提示定角色",
+  "body": "把角色、规则放 system，用户问题放 messages，结构清晰。",
+  "tag": "API"
+ },
+ {
+  "id": "t087",
+  "type": "tip",
+  "title": "工具调用",
+  "body": "定义好工具和参数，Claude 会在需要时调用你的函数。",
+  "tag": "API"
+ },
+ {
+  "id": "t088",
+  "type": "tip",
+  "title": "检查 stop_reason",
+  "body": "读结果前先看 stop_reason，被截断或拒答要单独处理。",
+  "tag": "API"
+ },
+ {
+  "id": "t089",
+  "type": "tip",
+  "title": "SDK 自动重试",
+  "body": "官方 SDK 默认会重试限流和服务器错误，不用自己再包一层。",
+  "tag": "API"
+ },
+ {
+  "id": "t090",
+  "type": "tip",
+  "title": "Console 调提示词",
+  "body": "在 Claude Console 的工作台里调试提示词，满意了再写进代码。",
+  "tag": "API"
+ }
+]

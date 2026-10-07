@@ -1,0 +1,36 @@
+name: 更新 Claude 新闻
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"   # 每 3 小时一次（UTC）
+  workflow_dispatch:          # 也可以在 Actions 页面手动运行
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: server/package-lock.json
+      - run: npm ci
+        working-directory: server
+      - run: node server/update-news.mjs
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
+      - name: 提交更新
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/cards.json server/state.json
+          git diff --cached --quiet || (git commit -m "更新新闻卡片" && git push)

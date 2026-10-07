@@ -1,0 +1,7 @@
+{
+  "name": "claude-watch-news",
+  "private": true,
+  "type": "module",
+  "scripts": { "update": "node update-news.mjs", "dry": "node update-news.mjs --dry" },
+  "dependencies": { "@anthropic-ai/sdk": "^0.131.0" }
+}
