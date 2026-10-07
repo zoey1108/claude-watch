@@ -24,6 +24,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.zoey1108.claudetap
         PRODUCT_NAME: AI 一点通
         TARGETED_DEVICE_FAMILY: "1,2"
+        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
     dependencies:
       - target: ClaudeTapWatch
   ClaudeTapWatch:
