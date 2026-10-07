@@ -7,41 +7,60 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		044E1A731A7618A8D3D0B23E /* tips.json in Resources */ = {isa = PBXBuildFile; fileRef = D1A3165E3D06FF585DE2C00A /* tips.json */; };
+		00F6C5738E540C42E274F87D /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876A030A1976AC7424BB9D84 /* Notifier.swift */; };
+		109B32CC2496E6DF81C5D50D /* ClaudeTapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8FC0014E2B3CA4ED15DAE /* ClaudeTapApp.swift */; };
+		2585805F140DDBD007F05D0C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B7CD2791E5A6197346C8A3 /* ContentView.swift */; };
+		2C503F1E070D62C17C3B743C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48283035BCB58D8250CC658F /* Card.swift */; };
+		305A0701BFE47A8A5D5246BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD6E4CE7D60B65D019EEAAF6 /* Assets.xcassets */; };
+		32A78FE477D19D18BF6759AA /* tips.json in Resources */ = {isa = PBXBuildFile; fileRef = D1A3165E3D06FF585DE2C00A /* tips.json */; };
+		42046951F2D1F1EE7A3A3FD2 /* OtherViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA0B6256B930DED5210B8A /* OtherViews.swift */; };
+		48241055D0F95382E50197F5 /* ClaudeTapWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7DA975C63A68CF5CCF086429 /* ClaudeTapWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4D5171186B8ED997E9D1E334 /* tips.json in Resources */ = {isa = PBXBuildFile; fileRef = D1A3165E3D06FF585DE2C00A /* tips.json */; };
-		543C93DCAB41989FE7FAB7C5 /* ClaudeTapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8FC0014E2B3CA4ED15DAE /* ClaudeTapApp.swift */; };
-		5C378D23CEFC5A2B54E1061A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB070DE8C671EE51AA2901F3 /* Config.swift */; };
+		4FE1AF8967EEFFB4D143771B /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B71F1E09268517E56D3E9C /* CardDeck.swift */; };
 		70FE435CE031BCDB0BDF49E0 /* TipWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36384B7165BC05D95193A8C /* TipWidget.swift */; };
 		7F635FC95CE730DEE6A7324B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48283035BCB58D8250CC658F /* Card.swift */; };
-		8853898AF1C12E0F18AC8EED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B7CD2791E5A6197346C8A3 /* ContentView.swift */; };
-		8C0FA0B25247D5B544F15BE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD6E4CE7D60B65D019EEAAF6 /* Assets.xcassets */; };
-		90417583B15CF8E1BC4F46EA /* ClaudeTapWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7DA975C63A68CF5CCF086429 /* ClaudeTapWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AEDE4F4286C7DF5D792DC8B4 /* OtherViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA0B6256B930DED5210B8A /* OtherViews.swift */; };
-		B2848353232C53E118DDBBAD /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48283035BCB58D8250CC658F /* Card.swift */; };
-		C8FC317D821BBC56D4468ED0 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B71F1E09268517E56D3E9C /* CardDeck.swift */; };
-		EB49C6F2599B66D0EED32721 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876A030A1976AC7424BB9D84 /* Notifier.swift */; };
+		846F5F8E9C968979BEA4A15E /* ClaudeTapWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 817F0D969BA62547421B441F /* ClaudeTapWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		86610D5C5319AC8DFAB89934 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB070DE8C671EE51AA2901F3 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		67C7CCDBD846D5A2A01E3BE0 /* PBXContainerItemProxy */ = {
+		0CE7BDEB6CD95A9A3B8D3BD2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6DF678D8C9019C75393F9324 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3B985E0E97798F51C3ADEEC3;
 			remoteInfo = ClaudeTapWidget;
 		};
+		900FB7DD414252DACE36C837 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6DF678D8C9019C75393F9324 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47BB3F3D0FBDAD7678A7CAC7;
+			remoteInfo = ClaudeTapWatch;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F817194152603EAC5D81E9EC /* Embed Foundation Extensions */ = {
+		C6DFB8CA1DEAD9AD0D1D5A9E /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				90417583B15CF8E1BC4F46EA /* ClaudeTapWidget.appex in Embed Foundation Extensions */,
+				48241055D0F95382E50197F5 /* ClaudeTapWidget.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4309A7F40A1D34DFA48B644 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				846F5F8E9C968979BEA4A15E /* ClaudeTapWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -53,7 +72,8 @@
 		58B7CD2791E5A6197346C8A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		72C2E13457E4E54EF76491EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7DA975C63A68CF5CCF086429 /* ClaudeTapWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ClaudeTapWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E8537466BB7435EC1B21C21 /* ClaudeTap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClaudeTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E8537466BB7435EC1B21C21 /* ClaudeTap.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ClaudeTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		817F0D969BA62547421B441F /* ClaudeTapWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClaudeTapWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		876A030A1976AC7424BB9D84 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		9ECA0B6256B930DED5210B8A /* OtherViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViews.swift; sourceTree = "<group>"; };
 		BB070DE8C671EE51AA2901F3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -111,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				7E8537466BB7435EC1B21C21 /* ClaudeTap.app */,
+				817F0D969BA62547421B441F /* ClaudeTapWatch.app */,
 				7DA975C63A68CF5CCF086429 /* ClaudeTapWidget.appex */,
 			);
 			name = Products;
@@ -137,25 +158,44 @@
 			productReference = 7DA975C63A68CF5CCF086429 /* ClaudeTapWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		47BB3F3D0FBDAD7678A7CAC7 /* ClaudeTapWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 874FB94510C6CE0B78E0D8A7 /* Build configuration list for PBXNativeTarget "ClaudeTapWatch" */;
+			buildPhases = (
+				744035C6863EF3C4D233C0AB /* Sources */,
+				8206D370BF10D127F28C0BD3 /* Resources */,
+				C6DFB8CA1DEAD9AD0D1D5A9E /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				08A6D38AB338B871B12DED38 /* PBXTargetDependency */,
+			);
+			name = ClaudeTapWatch;
+			packageProductDependencies = (
+			);
+			productName = ClaudeTapWatch;
+			productReference = 817F0D969BA62547421B441F /* ClaudeTapWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
 		FDF204F74161A7BD3E936631 /* ClaudeTap */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0EBFB7B15DFC0CFB3DD48AA9 /* Build configuration list for PBXNativeTarget "ClaudeTap" */;
 			buildPhases = (
 				F292A747CDD632B10BC9895D /* Sources */,
-				A87F564E72E93BD94B29A8E5 /* Resources */,
-				F817194152603EAC5D81E9EC /* Embed Foundation Extensions */,
+				E4309A7F40A1D34DFA48B644 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D72FF7ED02B7D4556A299BBD /* PBXTargetDependency */,
+				2DD5F7E89635CA6391748656 /* PBXTargetDependency */,
 			);
 			name = ClaudeTap;
 			packageProductDependencies = (
 			);
 			productName = ClaudeTap;
 			productReference = 7E8537466BB7435EC1B21C21 /* ClaudeTap.app */;
-			productType = "com.apple.product-type.application";
+			productType = "com.apple.product-type.application.watchapp2-container";
 		};
 /* End PBXNativeTarget section */
 
@@ -167,6 +207,10 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					3B985E0E97798F51C3ADEEC3 = {
+						DevelopmentTeam = G692HH5654;
+						ProvisioningStyle = Automatic;
+					};
+					47BB3F3D0FBDAD7678A7CAC7 = {
 						DevelopmentTeam = G692HH5654;
 						ProvisioningStyle = Automatic;
 					};
@@ -191,6 +235,7 @@
 			projectRoot = "";
 			targets = (
 				FDF204F74161A7BD3E936631 /* ClaudeTap */,
+				47BB3F3D0FBDAD7678A7CAC7 /* ClaudeTapWatch */,
 				3B985E0E97798F51C3ADEEC3 /* ClaudeTapWidget */,
 			);
 		};
@@ -205,12 +250,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A87F564E72E93BD94B29A8E5 /* Resources */ = {
+		8206D370BF10D127F28C0BD3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C0FA0B25247D5B544F15BE0 /* Assets.xcassets in Resources */,
-				044E1A731A7618A8D3D0B23E /* tips.json in Resources */,
+				305A0701BFE47A8A5D5246BB /* Assets.xcassets in Resources */,
+				32A78FE477D19D18BF6759AA /* tips.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,41 +271,68 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		744035C6863EF3C4D233C0AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C503F1E070D62C17C3B743C /* Card.swift in Sources */,
+				4FE1AF8967EEFFB4D143771B /* CardDeck.swift in Sources */,
+				109B32CC2496E6DF81C5D50D /* ClaudeTapApp.swift in Sources */,
+				86610D5C5319AC8DFAB89934 /* Config.swift in Sources */,
+				2585805F140DDBD007F05D0C /* ContentView.swift in Sources */,
+				00F6C5738E540C42E274F87D /* Notifier.swift in Sources */,
+				42046951F2D1F1EE7A3A3FD2 /* OtherViews.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F292A747CDD632B10BC9895D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2848353232C53E118DDBBAD /* Card.swift in Sources */,
-				C8FC317D821BBC56D4468ED0 /* CardDeck.swift in Sources */,
-				543C93DCAB41989FE7FAB7C5 /* ClaudeTapApp.swift in Sources */,
-				5C378D23CEFC5A2B54E1061A /* Config.swift in Sources */,
-				8853898AF1C12E0F18AC8EED /* ContentView.swift in Sources */,
-				EB49C6F2599B66D0EED32721 /* Notifier.swift in Sources */,
-				AEDE4F4286C7DF5D792DC8B4 /* OtherViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D72FF7ED02B7D4556A299BBD /* PBXTargetDependency */ = {
+		08A6D38AB338B871B12DED38 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3B985E0E97798F51C3ADEEC3 /* ClaudeTapWidget */;
-			targetProxy = 67C7CCDBD846D5A2A01E3BE0 /* PBXContainerItemProxy */;
+			targetProxy = 0CE7BDEB6CD95A9A3B8D3BD2 /* PBXContainerItemProxy */;
+		};
+		2DD5F7E89635CA6391748656 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47BB3F3D0FBDAD7678A7CAC7 /* ClaudeTapWatch */;
+			targetProxy = 900FB7DD414252DACE36C837 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		49E9A9BA71CAA860A0A1408C /* Debug */ = {
+		00AAB32B53CE27351A25863F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				INFOPLIST_FILE = App/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zoey1108.claudetap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zoey1108.claudetap.watchkitapp;
+				PRODUCT_NAME = ClaudeTap;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		49E9A9BA71CAA860A0A1408C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zoey1108.claudetap;
+				PRODUCT_NAME = "AI 一点通";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -319,13 +391,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Claude一点通";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI 一点通";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -342,7 +414,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zoey1108.claudetap.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zoey1108.claudetap.watchkitapp.widget;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -352,13 +424,14 @@
 		A4BD5C379B314F617C559562 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoey1108.claudetap;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
+				PRODUCT_NAME = "AI 一点通";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -411,16 +484,30 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Claude一点通";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI 一点通";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		DDAF8125FAB776712416BA0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				INFOPLIST_FILE = App/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zoey1108.claudetap.watchkitapp;
+				PRODUCT_NAME = ClaudeTap;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
 			};
 			name = Release;
 		};
@@ -433,7 +520,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zoey1108.claudetap.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zoey1108.claudetap.watchkitapp.widget;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -466,6 +553,15 @@
 			buildConfigurations = (
 				A3A19408081E40164FF7C9FB /* Debug */,
 				FF5B20E130367F6DA3B4D153 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		874FB94510C6CE0B78E0D8A7 /* Build configuration list for PBXNativeTarget "ClaudeTapWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00AAB32B53CE27351A25863F /* Debug */,
+				DDAF8125FAB776712416BA0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

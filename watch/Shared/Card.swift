@@ -1,26 +1,11 @@
 import Foundation
 
-/// 一张卡片：一条小技巧或一条新闻。手表端与服务端 cards.json 共用这个结构。
+/// 一张技巧卡片
 struct Card: Codable, Identifiable, Hashable {
-    enum Kind: String, Codable { case tip, news }
-
     let id: String
-    let type: Kind
     let title: String
     let body: String
     let tag: String
-    var url: String? = nil
-    var date: String? = nil
-
-    var isNews: Bool { type == .news }
-
-    /// 新闻日期显示成「10月5日」
-    var shortDate: String? {
-        guard let date, date.count >= 10 else { return nil }
-        let parts = date.prefix(10).split(separator: "-")
-        guard parts.count == 3, let m = Int(parts[1]), let d = Int(parts[2]) else { return nil }
-        return "\(m)月\(d)日"
-    }
 }
 
 enum CardLibrary {
@@ -32,8 +17,8 @@ enum CardLibrary {
         return cards
     }()
 
-    static let fallback = Card(id: "t000", type: .tip, title: "轻点屏幕",
-                               body: "每点一下，换一条 Claude 小技巧或新闻。", tag: "开始")
+    static let fallback = Card(id: "t000", title: "轻点屏幕",
+                               body: "每点一下，换一条 AI 小技巧。", tag: "开始")
 
     static func randomTip() -> Card { tips.randomElement() ?? fallback }
 

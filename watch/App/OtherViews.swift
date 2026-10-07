@@ -16,7 +16,7 @@ struct FavoritesView: View {
                     ForEach(deck.favorites) { card in
                         NavigationLink {
                             ScrollView { CardView(card: card, showHint: false) }
-                                .navigationTitle(card.isNews ? "新闻" : card.tag)
+                                .navigationTitle(card.tag)
                         } label: {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(card.title).font(.headline).lineLimit(1)
@@ -33,42 +33,24 @@ struct FavoritesView: View {
 }
 
 struct SettingsView: View {
-    @EnvironmentObject private var deck: CardDeck
     @AppStorage(SettingKey.tipsPerDay) private var tipsPerDay = 2
-    @AppStorage(SettingKey.newsAlerts) private var newsAlerts = true
-    @State private var checking = false
 
     var body: some View {
         List {
-            Section("主动推送") {
+            Section {
                 Picker("每日技巧", selection: $tipsPerDay) {
                     Text("关闭").tag(0)
                     Text("每天 1 条").tag(1)
                     Text("每天 2 条").tag(2)
                     Text("每天 3 条").tag(3)
                 }
-                Toggle("新闻提醒", isOn: $newsAlerts)
-            }
-            Section {
-                Button {
-                    checking = true
-                    Task {
-                        await deck.refreshNews()
-                        checking = false
-                    }
-                } label: {
-                    HStack {
-                        Text("检查新闻")
-                        Spacer()
-                        if checking { ProgressView().frame(width: 20) }
-                    }
-                }
-                .disabled(checking)
+            } header: {
+                Text("主动推送")
             } footer: {
-                Text(statusText)
+                Text(footer)
             }
             Section {
-                Text("技巧 \(CardLibrary.tips.count) 条 · 新闻 \(deck.news.count) 条")
+                Text("共 \(CardLibrary.tips.count) 条技巧，全部离线可用")
                     .font(.footnote).foregroundStyle(.secondary)
             }
         }
@@ -78,8 +60,9 @@ struct SettingsView: View {
         }
     }
 
-    private var statusText: String {
-        guard let date = deck.lastRefresh else { return "还没有拉取过新闻" }
-        return "上次更新：" + date.formatted(.relative(presentation: .named))
+    private var footer: String {
+        let times = Config.tipTimes.prefix(tipsPerDay).sorted { ($0.hour, $0.minute) < ($1.hour, $1.minute) }
+            .map { String(format: "%d:%02d", $0.hour, $0.minute) }
+        return times.isEmpty ? "不推送技巧提醒" : "每天 " + times.joined(separator: "、") + " 推送"
     }
 }

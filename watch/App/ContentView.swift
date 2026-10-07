@@ -3,7 +3,6 @@ import WatchKit
 
 struct ContentView: View {
     @EnvironmentObject private var deck: CardDeck
-    @Environment(\.scenePhase) private var scenePhase
     @State private var crown = 0.0
     @State private var favoriteToast: Bool?
     @State private var toastTask: Task<Void, Never>?
@@ -32,10 +31,6 @@ struct ContentView: View {
                 .onChange(of: deck.position) { _, position in
                     if Int(crown.rounded()) != position { crown = Double(position) }
                 }
-                .userActivity("NSUserActivityTypeBrowsingWeb", isActive: deck.current.url != nil) { activity in
-                    // 新闻卡片可通过「接力」在 iPhone 上打开原文
-                    activity.webpageURL = deck.current.url.flatMap(URL.init(string:))
-                }
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         NavigationLink { FavoritesView() } label: { Image(systemName: "star") }
@@ -53,14 +48,8 @@ struct ContentView: View {
                 }
         }
         .task {
-            await deck.refreshNews()
             await Notifier.requestAuthorization()
             await Notifier.scheduleTips()
-            BackgroundRefresh.schedule()
-        }
-        .onChange(of: scenePhase) { _, phase in
-            guard phase == .active else { return }
-            Task { await deck.refreshNews() }
         }
     }
 
@@ -104,18 +93,15 @@ struct CardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(spacing: 4) {
-                Image(systemName: card.isNews ? "newspaper.fill" : "lightbulb.fill")
-                Text(card.isNews ? "新闻" : card.tag)
-                if let date = card.shortDate, card.isNews {
-                    Text("· \(date)").foregroundStyle(.secondary)
-                }
+                Image(systemName: "lightbulb.fill")
+                Text(card.tag)
                 Spacer(minLength: 0)
                 if isFavorite {
                     Image(systemName: "star.fill").foregroundStyle(.yellow)
                 }
             }
             .font(.caption2.weight(.semibold))
-            .foregroundStyle(card.isNews ? Color.coral : Color.sand)
+            .foregroundStyle(Color.amber)
             .lineLimit(1)
 
             Text(card.title)
@@ -131,8 +117,7 @@ struct CardView: View {
             Spacer(minLength: 0)
 
             if showHint {
-                Text(card.url != nil ? "轻点换一条 · 接力到 iPhone 看原文"
-                     : isFavorite ? "轻点换一条 · 长按取消收藏" : "轻点换一条 · 长按收藏")
+                Text(isFavorite ? "轻点换一条 · 长按取消收藏" : "轻点换一条 · 长按收藏")
                     .font(.system(size: 10))
                     .foregroundStyle(.tertiary)
                     .lineLimit(1)
@@ -144,6 +129,5 @@ struct CardView: View {
 }
 
 extension Color {
-    static let coral = Color(red: 0.85, green: 0.47, blue: 0.34)
-    static let sand = Color(red: 0.86, green: 0.78, blue: 0.66)
+    static let amber = Color(red: 0.96, green: 0.71, blue: 0.26)
 }

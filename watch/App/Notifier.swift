@@ -1,8 +1,7 @@
 import Foundation
 import UserNotifications
-import WatchKit
 
-/// 主动推送：每日技巧用定时本地通知；新闻在后台刷新发现新条目时立即通知。
+/// 主动推送：每日技巧用手表本地的定时通知，不联网。
 enum Notifier {
     private static let center = UNUserNotificationCenter.current()
     private static let tipPrefix = "tip-"
@@ -41,41 +40,13 @@ enum Notifier {
         }
     }
 
-    static func postNews(_ card: Card) async {
-        let request = UNNotificationRequest(identifier: "news-\(card.id)", content: content(for: card), trigger: nil)
-        try? await center.add(request)
-    }
-
     private static func content(for card: Card) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = card.title
-        content.subtitle = card.isNews ? "Claude 新闻" : "Claude 小技巧 · \(card.tag)"
+        content.subtitle = "AI 小技巧 · \(card.tag)"
         content.body = card.body
         content.sound = .default
         content.userInfo = ["cardID": card.id]
         return content
-    }
-}
-
-/// 后台刷新：大约每小时醒来一次拉新闻，有新的就推通知
-enum BackgroundRefresh {
-    static let id = "news-refresh"
-
-    @MainActor
-    static func schedule() {
-        WKApplication.shared().scheduleBackgroundRefresh(
-            withPreferredDate: Date().addingTimeInterval(Config.refreshInterval),
-            userInfo: id as NSString) { _ in }
-    }
-
-    @MainActor
-    static func run() async {
-        schedule()
-        let fresh = await CardDeck.shared.refreshNews()
-        let alertsOn = UserDefaults.standard.object(forKey: SettingKey.newsAlerts) as? Bool ?? true
-        guard alertsOn else { return }
-        for card in fresh.prefix(2) {
-            await Notifier.postNews(card)
-        }
     }
 }

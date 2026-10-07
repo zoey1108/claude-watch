@@ -66,7 +66,7 @@ struct TipWidget: Widget {
         StaticConfiguration(kind: "ClaudeTip", provider: TipProvider()) { entry in
             TipWidgetView(entry: entry)
         }
-        .configurationDisplayName("Claude 小技巧")
+        .configurationDisplayName("AI 小技巧")
         .description("每 2 小时换一条，点一下打开 App。")
         .supportedFamilies([.accessoryRectangular, .accessoryInline, .accessoryCircular])
     }

@@ -13,9 +13,6 @@ struct ClaudeTapApp: App {
                 .environmentObject(deck)
                 .onOpenURL { deck.handle($0) }
         }
-        .backgroundTask(.appRefresh(BackgroundRefresh.id)) {
-            await BackgroundRefresh.run()
-        }
     }
 }
 
