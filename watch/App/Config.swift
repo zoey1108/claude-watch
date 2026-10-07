@@ -2,7 +2,9 @@ import Foundation
 
 enum Config {
     /// 新闻源：GitHub Actions 每 3 小时更新一次，发布在 GitHub Pages 上
-    static let newsURL = URL(string: "https://zoey1108.github.io/claude-watch/cards.json")!
+    /// 调试时可用环境变量 NEWS_URL 指向本地文件服务
+    static let newsURL = ProcessInfo.processInfo.environment["NEWS_URL"].flatMap(URL.init(string:))
+        ?? URL(string: "https://zoey1108.github.io/claude-watch/cards.json")!
 
     /// 后台检查新闻的间隔（系统会根据电量和使用情况适当推迟）
     static let refreshInterval: TimeInterval = 60 * 60

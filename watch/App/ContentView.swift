@@ -47,6 +47,7 @@ struct ContentView: View {
                 }
         }
         .task {
+            await deck.refreshNews()
             await Notifier.requestAuthorization()
             await Notifier.scheduleTips()
             BackgroundRefresh.schedule()
