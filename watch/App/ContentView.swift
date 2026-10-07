@@ -5,6 +5,8 @@ struct ContentView: View {
     @EnvironmentObject private var deck: CardDeck
     @Environment(\.scenePhase) private var scenePhase
     @State private var crown = 0.0
+    @State private var favoriteToast: Bool?
+    @State private var toastTask: Task<Void, Never>?
 
     var body: some View {
         NavigationStack {
@@ -18,10 +20,7 @@ struct ContentView: View {
                     WKInterfaceDevice.current().play(.click)
                     withAnimation(.snappy(duration: 0.25)) { deck.next() }
                 }
-                .onLongPressGesture {
-                    WKInterfaceDevice.current().play(.success)
-                    deck.toggleFavorite(deck.current)
-                }
+                .onLongPressGesture { toggleFavorite() }
                 // 转表冠翻看刚才看过的卡片
                 .focusable()
                 .digitalCrownRotation($crown, from: 0, through: Double(max(deck.history.count - 1, 1)),
@@ -45,6 +44,13 @@ struct ContentView: View {
                         NavigationLink { SettingsView() } label: { Image(systemName: "gearshape") }
                     }
                 }
+                .overlay {
+                    if let added = favoriteToast {
+                        FavoriteToast(added: added)
+                            .transition(.scale(scale: 0.8).combined(with: .opacity))
+                            .allowsHitTesting(false)
+                    }
+                }
         }
         .task {
             await deck.refreshNews()
@@ -56,6 +62,37 @@ struct ContentView: View {
             guard phase == .active else { return }
             Task { await deck.refreshNews() }
         }
+    }
+
+    /// 长按收藏 / 取消收藏，弹出提示约 1 秒后消失
+    private func toggleFavorite() {
+        let added = !deck.isFavorite
+        deck.toggleFavorite(deck.current)
+        WKInterfaceDevice.current().play(added ? .success : .directionDown)
+        withAnimation(.spring(duration: 0.3)) { favoriteToast = added }
+        toastTask?.cancel()
+        toastTask = Task {
+            try? await Task.sleep(for: .seconds(1.2))
+            guard !Task.isCancelled else { return }
+            withAnimation(.easeOut(duration: 0.25)) { favoriteToast = nil }
+        }
+    }
+}
+
+struct FavoriteToast: View {
+    let added: Bool
+
+    var body: some View {
+        HStack(spacing: 6) {
+            Image(systemName: added ? "star.fill" : "star.slash")
+                .foregroundStyle(added ? Color.yellow : Color.secondary)
+            Text(added ? "已收藏" : "已取消收藏")
+        }
+        .font(.system(.body, design: .rounded).weight(.semibold))
+        .padding(.horizontal, 16)
+        .padding(.vertical, 10)
+        .background(.ultraThinMaterial, in: Capsule())
+        .overlay(Capsule().strokeBorder(.white.opacity(0.15)))
     }
 }
 
@@ -94,7 +131,8 @@ struct CardView: View {
             Spacer(minLength: 0)
 
             if showHint {
-                Text(card.url != nil ? "轻点换一条 · 接力到 iPhone 看原文" : "轻点换一条 · 长按收藏")
+                Text(card.url != nil ? "轻点换一条 · 接力到 iPhone 看原文"
+                     : isFavorite ? "轻点换一条 · 长按取消收藏" : "轻点换一条 · 长按收藏")
                     .font(.system(size: 10))
                     .foregroundStyle(.tertiary)
                     .lineLimit(1)
