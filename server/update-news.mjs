@@ -23,7 +23,7 @@ async function readJSON(file, fallback) {
 }
 
 async function getText(url) {
-  const res = await fetch(url, { headers: { "user-agent": "claude-watch-news/1.0" } });
+  const res = await fetch(url, { headers: { "user-agent": "claude-watch-news/1.0" }, signal: AbortSignal.timeout(20_000) });
   if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
   return res.text();
 }
@@ -107,9 +107,25 @@ const client = MODE === "api" ? new Anthropic() : null;
 const userPrompt = (item, raw) =>
   `来源：${raw.source}\n标题：${raw.title}\n链接：${item.url}\n\n<原文>\n${raw.text}\n</原文>`;
 
-function plainCard(raw) {
+/** 按单词截断，结尾补省略号 */
+function clip(text, max) {
+  text = text.replace(/\s+/g, " ").trim();
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  return cut.slice(0, Math.max(cut.lastIndexOf(" "), max * 0.6)).replace(/[\s,.;:—-]+$/, "") + "…";
+}
+
+/** 不用 AI 时的卡片：新闻取标题+摘要首句，更新日志挑第一条新功能 */
+function plainCard(item, raw) {
+  if (item.key.startsWith("cc:")) {
+    const bullets = raw.text.split("\n").filter((l) => l.startsWith("- ")).map((l) => l.slice(2));
+    const pick = bullets.find((b) => /^(Added|New|Introduced)/i.test(b)) || bullets[0] || "";
+    const extra = bullets.length > 1 ? ` (+${bullets.length - 1} more)` : "";
+    return { title: `${raw.title} 更新`, body: clip(pick.replace(/`/g, ""), 110 - extra.length) + extra,
+             tag: "Claude Code", skip: !pick };
+  }
   const first = raw.text.split(/(?<=[.!?])\s/)[0] || raw.text;
-  return { title: raw.title.slice(0, 40), body: first.slice(0, 90), tag: "Anthropic", skip: false };
+  return { title: clip(raw.title, 50), body: clip(first, 110), tag: "Anthropic", skip: false };
 }
 
 /** 用 Claude 订阅（claude setup-token 生成的令牌）通过 Claude Code 命令行改写 */
@@ -130,7 +146,7 @@ async function viaClaudeCode(item, raw) {
 }
 
 async function toCard(item, raw) {
-  if (MODE === "dry" || MODE === "plain") return plainCard(raw);
+  if (MODE === "dry" || MODE === "plain") return plainCard(item, raw);
   if (MODE === "subscription") return viaClaudeCode(item, raw);
   const response = await client.beta.messages.create({
     model: MODEL,
@@ -196,15 +212,14 @@ async function main() {
   }
 
   // 英文原标题模式不记录处理状态：以后配好令牌，同一条会用中文版重写并替换
-  const existing = new Set(feed.cards.map((c) => c.id));
-  if (MODE === "plain") {
-    added.splice(0, added.length, ...added.filter((c) => !existing.has(c.id)));
-  } else if (!DRY) {
+  if (!DRY && MODE !== "plain") {
     await fs.writeFile(STATE_FILE, JSON.stringify({ seen: [...seen].slice(-500) }, null, 1) + "\n");
   }
-  if (added.length || !feed.updated) {
-    const replaced = new Set(added.map((c) => c.id));
-    const cards = [...added, ...feed.cards.filter((c) => !replaced.has(c.id))].slice(0, KEEP_CARDS);
+  const replaced = new Set(added.map((c) => c.id));
+  const cards = [...added, ...feed.cards.filter((c) => !replaced.has(c.id))].slice(0, KEEP_CARDS);
+  // 内容没变就不写文件，避免每次都产生空提交
+  const changed = !feed.updated || JSON.stringify(cards) !== JSON.stringify(feed.cards);
+  if (changed) {
     const out = JSON.stringify({ updated: new Date().toISOString(), cards }, null, 1) + "\n";
     if (DRY) console.log(out.slice(0, 1500));
     else await fs.writeFile(CARDS_FILE, out);
