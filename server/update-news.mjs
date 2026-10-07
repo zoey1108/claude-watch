@@ -1,7 +1,9 @@
 // 抓取 Claude 相关新闻 → 用 Claude 改写成手表卡片 → 写入 docs/cards.json
 // 由 GitHub Actions 每 3 小时运行一次。本地试跑：node server/update-news.mjs --dry（不调用 Claude）
+// 改写方式：有 ANTHROPIC_API_KEY 走 API；有 CLAUDE_CODE_OAUTH_TOKEN 走 Claude 订阅；都没有则保留英文原标题
 import fs from "node:fs/promises";
 import path from "node:path";
+import { execFile } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -95,12 +97,41 @@ const SCHEMA = {
   additionalProperties: false,
 };
 
-const client = DRY ? null : new Anthropic();
+// 三种改写方式：API Key → Claude API；订阅令牌 → Claude Code 命令行；都没有 → 直接用英文原标题
+const MODE = DRY ? "dry"
+  : process.env.ANTHROPIC_API_KEY ? "api"
+  : process.env.CLAUDE_CODE_OAUTH_TOKEN ? "subscription"
+  : "plain";
+const client = MODE === "api" ? new Anthropic() : null;
+
+const userPrompt = (item, raw) =>
+  `来源：${raw.source}\n标题：${raw.title}\n链接：${item.url}\n\n<原文>\n${raw.text}\n</原文>`;
+
+function plainCard(raw) {
+  const first = raw.text.split(/(?<=[.!?])\s/)[0] || raw.text;
+  return { title: raw.title.slice(0, 40), body: first.slice(0, 90), tag: "Anthropic", skip: false };
+}
+
+/** 用 Claude 订阅（claude setup-token 生成的令牌）通过 Claude Code 命令行改写 */
+async function viaClaudeCode(item, raw) {
+  const args = ["-p", "--output-format", "json", "--tools", "",
+    "--system-prompt", SYSTEM, "--json-schema", JSON.stringify(SCHEMA)];
+  if (process.env.CLAUDE_MODEL) args.push("--model", process.env.CLAUDE_MODEL);
+  const stdout = await new Promise((resolve, reject) => {
+    const child = execFile("claude", args, { maxBuffer: 10 * 1024 * 1024, timeout: 180_000 },
+      (err, out, errOut) => (err ? reject(new Error(errOut || err.message)) : resolve(out)));
+    child.stdin.end(userPrompt(item, raw));
+  });
+  const result = JSON.parse(stdout);
+  if (result.is_error) throw new Error(result.result || "claude 返回错误");
+  if (result.structured_output) return result.structured_output;
+  const json = String(result.result).match(/\{[\s\S]*\}/)?.[0];
+  return json ? JSON.parse(json) : null;
+}
 
 async function toCard(item, raw) {
-  if (DRY) {
-    return { title: raw.title.slice(0, 30), body: raw.text.slice(0, 60), tag: "Anthropic", skip: false };
-  }
+  if (MODE === "dry" || MODE === "plain") return plainCard(raw);
+  if (MODE === "subscription") return viaClaudeCode(item, raw);
   const response = await client.beta.messages.create({
     model: MODEL,
     max_tokens: 2000,
@@ -108,7 +139,7 @@ async function toCard(item, raw) {
     fallbacks: "default",
     output_config: { effort: "low", format: { type: "json_schema", schema: SCHEMA } },
     system: SYSTEM,
-    messages: [{ role: "user", content: `来源：${raw.source}\n标题：${raw.title}\n链接：${item.url}\n\n<原文>\n${raw.text}\n</原文>` }],
+    messages: [{ role: "user", content: userPrompt(item, raw) }],
   });
   if (response.stop_reason !== "end_turn") {
     console.warn(`  跳过 ${item.key}：stop_reason=${response.stop_reason}`);
@@ -140,7 +171,7 @@ async function main() {
     }
   }
   candidates = candidates.slice(0, MAX_NEW_PER_RUN);
-  console.log(`待处理 ${candidates.length} 条（模型 ${DRY ? "dry-run" : MODEL}）`);
+  console.log(`待处理 ${candidates.length} 条（方式 ${MODE}${MODE === "api" ? " / " + MODEL : ""}）`);
 
   const added = [];
   for (const item of candidates) {
@@ -164,11 +195,16 @@ async function main() {
     }
   }
 
-  if (!DRY) {
+  // 英文原标题模式不记录处理状态：以后配好令牌，同一条会用中文版重写并替换
+  const existing = new Set(feed.cards.map((c) => c.id));
+  if (MODE === "plain") {
+    added.splice(0, added.length, ...added.filter((c) => !existing.has(c.id)));
+  } else if (!DRY) {
     await fs.writeFile(STATE_FILE, JSON.stringify({ seen: [...seen].slice(-500) }, null, 1) + "\n");
   }
   if (added.length || !feed.updated) {
-    const cards = [...added, ...feed.cards].slice(0, KEEP_CARDS);
+    const replaced = new Set(added.map((c) => c.id));
+    const cards = [...added, ...feed.cards.filter((c) => !replaced.has(c.id))].slice(0, KEEP_CARDS);
     const out = JSON.stringify({ updated: new Date().toISOString(), cards }, null, 1) + "\n";
     if (DRY) console.log(out.slice(0, 1500));
     else await fs.writeFile(CARDS_FILE, out);

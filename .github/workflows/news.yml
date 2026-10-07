@@ -15,6 +15,10 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+      CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,10 +28,10 @@ jobs:
           cache-dependency-path: server/package-lock.json
       - run: npm ci
         working-directory: server
+      - name: 安装 Claude Code（用订阅令牌时需要）
+        if: ${{ env.CLAUDE_CODE_OAUTH_TOKEN != '' }}
+        run: npm install -g @anthropic-ai/claude-code
       - run: node server/update-news.mjs
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
       - name: 提交更新
         run: |
           git config user.name "github-actions[bot]"

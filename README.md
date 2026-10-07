@@ -37,7 +37,7 @@ docs/       GitHub Pages 发布目录，cards.json 就是手表读取的新闻�
 - 技巧：直接编辑 `watch/Shared/tips.json`（标题 ≤14 字，正文 ≤50 字，手表一屏才放得下）
 - 新闻改写风格：`server/update-news.mjs` 里的 `SYSTEM`
 - 新闻源地址：`watch/App/Config.swift` 的 `newsURL`
-- 默认用 `claude-opus-5-5`；想换模型，在仓库 Settings → Variables 里加 `CLAUDE_MODEL`
+- 想指定模型，在仓库 Settings → Variables 里加 `CLAUDE_MODEL`（API 模式默认 `claude-opus-5-5`）
 
 ## 构建
 
@@ -50,7 +50,10 @@ cd watch && xcodegen generate && open ClaudeTap.xcodeproj
 ## 新闻后端上线（一次性）
 
 1. 推到 GitHub 仓库 `zoey1108/claude-watch`
-2. 仓库 Settings → Secrets and variables → Actions，添加 `ANTHROPIC_API_KEY`
+2. 仓库 Settings → Secrets and variables → Actions，二选一添加：
+   - `CLAUDE_CODE_OAUTH_TOKEN`：用 Claude Pro/Max 订阅，不额外付费。本机运行 `npx @anthropic-ai/claude-code setup-token` 生成
+   - `ANTHROPIC_API_KEY`：按量付费的 API Key
+   都不加也能跑，但新闻会是英文原标题
 3. Settings → Pages：Source 选 `main` 分支的 `/docs` 目录
 4. Actions → 「更新 Claude 新闻」→ Run workflow，手动跑第一次
 
