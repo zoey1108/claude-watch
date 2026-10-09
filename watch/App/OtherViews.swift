@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 
 struct FavoritesView: View {
     @EnvironmentObject private var deck: CardDeck
@@ -34,6 +35,9 @@ struct FavoritesView: View {
 
 struct SettingsView: View {
     @AppStorage(SettingKey.tipsPerDay) private var tipsPerDay = 2
+    @State private var status: UNAuthorizationStatus = .notDetermined
+    @State private var nextDate: Date?
+    @State private var testSent = false
 
     var body: some View {
         List {
@@ -50,13 +54,53 @@ struct SettingsView: View {
                 Text(footer)
             }
             Section {
+                Label(statusText, systemImage: status == .denied ? "bell.slash" : "bell")
+                    .foregroundStyle(status == .denied ? Color.orange : Color.primary)
+                    .font(.footnote)
+                if status == .denied {
+                    Text("在 iPhone 的「Watch」App →「通知」里找到「AI 一点通」打开")
+                        .font(.footnote).foregroundStyle(.secondary)
+                } else if let nextDate {
+                    Text("下一条：" + nextDate.formatted(.dateTime.month().day().hour().minute()))
+                        .font(.footnote).foregroundStyle(.secondary)
+                }
+                Button(testSent ? "已安排，放下手腕等 5 秒" : "发一条测试提醒") {
+                    Task {
+                        await Notifier.requestAuthorization()
+                        await Notifier.sendTest()
+                        testSent = true
+                        await refresh()
+                    }
+                }
+                .disabled(status == .denied)
+            } header: {
+                Text("提醒状态")
+            }
+            Section {
                 Text("共 \(CardLibrary.tips.count) 条技巧，全部离线可用")
                     .font(.footnote).foregroundStyle(.secondary)
             }
         }
         .navigationTitle("设置")
+        .task { await refresh() }
         .onChange(of: tipsPerDay) { _, _ in
-            Task { await Notifier.scheduleTips() }
+            Task {
+                await Notifier.scheduleTips()
+                await refresh()
+            }
+        }
+    }
+
+    private func refresh() async {
+        status = await Notifier.authorizationStatus()
+        nextDate = await Notifier.nextTipDate()
+    }
+
+    private var statusText: String {
+        switch status {
+        case .denied: "通知已关闭"
+        case .notDetermined: "还没有授权通知"
+        default: "通知已开启"
         }
     }
 

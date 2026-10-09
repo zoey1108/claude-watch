@@ -50,6 +50,7 @@ struct ContentView: View {
         .task {
             await Notifier.requestAuthorization()
             await Notifier.scheduleTips()
+            TipRefresh.schedule()
         }
     }
 
