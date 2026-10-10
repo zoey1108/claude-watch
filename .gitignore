@@ -3,3 +3,4 @@ watch/build/
 *.xcuserstate
 xcuserdata/
 .DS_Store
+appstore/*.mp4
